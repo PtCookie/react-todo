@@ -1,0 +1,14 @@
+extends:
+  - react-app
+  - react-app/jest
+  - prettier
+  - prettier/react
+plugins:
+  - prettier
+rules:
+  prettier/prettier: warn
+  arrow-body-style: 0
+  prefer-arrow-callback: 0
+overrides:
+  - files:
+      - '**/*.ts?(x)'

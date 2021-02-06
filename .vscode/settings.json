@@ -1,0 +1,5 @@
+{
+  "eslint.packageManager": "yarn",
+  "eslint.lintTask.options": ".eslintrc.yml",
+  "editor.formatOnSave": true
+}
