@@ -12,11 +12,84 @@
 
 @layer base {
     body {
-        @apply m-0;
+        @apply m-0 p-0 bg-gray-200;
         font-family: 'Noto Sans KR', sans-serif;
     }
 
     code {
         font-family: 'Cascadia Mono PL', monospace;
+    }
+}
+
+@layer components {
+    .TodoTemplate {
+        @apply mx-auto mt-24 rounded overflow-hidden;
+        width: 512px;
+    }
+
+    .app-title {
+        @apply h-16 flex justify-center items-center text-white text-2xl;
+        background: #22b8cf;
+    }
+
+    .content {
+        @apply bg-white;
+    }
+
+    .TodoInsert {
+        @apply flex bg-gray-600;
+    }
+
+    .TodoInsert input {
+        @apply flex-1 p-2 bg-none text-lg text-white;
+        background: none;
+    }
+
+    .TodoInsert button {
+        @apply flex px-4 items-center cursor-pointer hover:bg-gray-400 text-2xl text-white;
+    }
+
+    .TodoList {
+        @apply overflow-y-auto;
+        min-height: 320px;
+        max-height: 513px;
+    }
+
+    .TodoListItem {
+        @apply p-4 flex items-center;
+    }
+
+    .TodoListItem:nth-child(even) {
+        @apply bg-gray-100;
+    }
+
+    .TodoListItem .checkbox {
+        @apply cursor-pointer flex flex-1 items-center;
+    }
+
+    .TodoListItem .checkbox svg {
+        @apply text-2xl;
+    }
+
+    .TodoListItem .checkbox .text {
+        @apply flex-1 ml-2;
+    }
+
+    .TodoListItem .checkbox.checked svg {
+        color: #22b8cf;
+    }
+
+    .TodoListItem .checkbox.checked .text {
+        @apply line-through;
+        color: #adb5bd;
+    }
+
+    .TodoListItem .remove {
+        @apply flex items-center text-2xl cursor-pointer;
+        color: #ff6b6b;
+    }
+
+    .TodoListItem .remove:hover {
+        color: #ff8787;
     }
 }
