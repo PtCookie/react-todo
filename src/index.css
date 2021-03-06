@@ -10,13 +10,13 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    margin: 0;
-    font-family: 'Noto Sans KR', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+@layer base {
+    body {
+        @apply m-0;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
 
-code {
-    font-family: 'Cascadia Mono PL', monospace;
+    code {
+        font-family: 'Cascadia Mono PL', monospace;
+    }
 }

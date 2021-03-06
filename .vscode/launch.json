@@ -14,7 +14,13 @@
       "request": "launch",
       "reAttach": true,
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}/src"
+      "pathMappings": [
+        {
+          "url": "http://localhost:3000/",
+          "path": "${workspaceFolder}/src/"
+        }
+      ],
+      "enableCRAWorkaround": true
     }
   ]
 }
