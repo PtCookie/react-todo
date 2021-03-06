@@ -1,5 +1,7 @@
 {
-  "eslint.packageManager": "yarn",
+  "cSpell.words": ["compat", "craco", "tailwindcss"],
+  "css.validate": false,
   "eslint.lintTask.options": ".eslintrc.yml",
-  "editor.formatOnSave": true
+  "eslint.packageManager": "yarn",
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
