@@ -59,7 +59,7 @@
         @apply p-4 flex items-center;
     }
 
-    .TodoListItem:nth-child(even) {
+    .TodoListItem-virtualized:nth-child(even) {
         @apply bg-gray-100;
     }
 
