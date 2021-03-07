@@ -3,56 +3,57 @@ import TodoInsert from './components/TodoInsert';
 import TodoList from './components/TodoList';
 import TodoTemplate from './components/TodoTemplate';
 
-function App(): React.ReactElement {
-  const [todoList, setTodoList] = React.useState<Todo[]>([
-    {
-      id: 1,
-      text: 'About React',
-      checked: true,
-    },
-    {
-      id: 2,
-      text: 'Styling component',
-      checked: true,
-    },
-    {
-      id: 3,
-      text: 'Create Todo app',
+function createInitialList(): Todo[] {
+  const array: Todo[] = [];
+  for (let i = 1; i <= 2500; i++) {
+    array.push({
+      id: i,
+      text: `Todo ${i}`,
       checked: false,
-    },
-  ]);
+    });
+  }
+
+  return array;
+}
+
+function todoReducer(todoList: Todo[], action: any) {
+  switch (action.type) {
+    case 'INSERT':
+      return todoList.concat(action.todo);
+    case 'TOGGLE':
+      return todoList.map((todo: Todo) =>
+        todo.id === action.id ? { ...todo, checked: !todo.checked } : todo
+      );
+    case 'REMOVE':
+      return todoList.filter((todo: Todo) => todo.id !== action.id);
+    default:
+      return todoList;
+  }
+}
+
+function App(): React.ReactElement {
+  const [todoList, dispatch] = React.useReducer(todoReducer, undefined, createInitialList);
 
   const nextId = React.useRef(4);
 
-  const onInsert = React.useCallback(
-    (text: string) => {
-      const todo: Todo = {
-        id: nextId.current,
-        text,
-        checked: false,
-      };
+  const onInsert = React.useCallback((text: string) => {
+    const todo: Todo = {
+      id: nextId.current,
+      text,
+      checked: false,
+    };
 
-      setTodoList(todoList.concat(todo));
-      nextId.current++;
-    },
-    [todoList]
-  );
+    dispatch({ type: 'INSERT', todo });
+    nextId.current++;
+  }, []);
 
-  const onToggle = React.useCallback(
-    (id: number) => {
-      setTodoList(
-        todoList.map((todo: Todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo))
-      );
-    },
-    [todoList]
-  );
+  const onToggle = React.useCallback((id: number) => {
+    dispatch({ type: 'TOGGLE', id });
+  }, []);
 
-  const onRemove = React.useCallback(
-    (id: number) => {
-      setTodoList(todoList.filter((todo: Todo) => todo.id !== id));
-    },
-    [todoList]
-  );
+  const onRemove = React.useCallback((id: number) => {
+    dispatch({ type: 'REMOVE', id });
+  }, []);
 
   return (
     <TodoTemplate>
